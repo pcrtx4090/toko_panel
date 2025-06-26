@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasbor Penjualan</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="app-logo"><i class="bi bi-speedometer2"></i> Dasbor Penjualan</a>
+            <button class="btn btn-light d-lg-none" id="sidebar-close-btn"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="menu-link active" data-view="view-akun" data-title="Daftar Akun"><i class="bi bi-person-vcard-fill"></i><span>Akun</span></a></li>
+            <li><a href="#" class="menu-link" data-view="view-game" data-title="Daftar Game"><i class="bi bi-controller"></i><span>Game</span></a></li>
+            <li><a href="#" class="menu-link" data-view="view-film" data-title="Daftar Film"><i class="bi bi-film"></i><span>Film</span></a></li>
+            <li class="sidebar-divider"></li>
+            <li><a href="toko.html" class="menu-link-alt"><i class="bi bi-shop"></i><span>Halaman Toko</span></a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="theme-switch-wrapper">
+                <i class="bi bi-sun-fill"></i>
+                <div class="form-check form-switch theme-switch">
+                    <input class="form-check-input" type="checkbox" id="theme-toggle">
+                </div>
+                <i class="bi bi-moon-fill"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="sidebar-overlay"></div>
+        <header class="main-header">
+            <button class="btn btn-light d-lg-none" id="menu-toggle"><i class="bi bi-list"></i></button>
+            <h4 class="page-title" id="page-title">Daftar Akun</h4>
+        </header>
+
+        <main class="container-fluid">
+            <div id="view-akun" class="view-container">
+                <div class="card mb-4"><div class="card-header"><h5 class="card-title mb-0"><i class="bi bi-plus-circle-fill text-primary"></i> Tambah Akun Baru</h5></div><div class="card-body"><form id="add-account-form" class="row g-3 align-items-end"><div class="col-md-5"><label for="new-email" class="form-label">Email</label><input type="email" class="form-control" id="new-email" required></div><div class="col-md-5"><label for="new-password" class="form-label">Password</label><input type="text" class="form-control" id="new-password" required></div><div class="col-md-2 d-grid"><button type="submit" class="btn btn-primary fw-bold"><i class="bi bi-plus-lg"></i> Tambah</button></div></form></div></div>
+                <div class="card"><div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2"><h5 class="card-title mb-0"><i class="bi bi-list-ul text-primary"></i> Daftar Akun</h5><div class="d-flex align-items-center gap-2"><div class="input-group" style="width: 250px;"><span class="input-group-text"><i class="bi bi-search"></i></span><input type="text" id="searchInput-akun" class="form-control" placeholder="Cari email..."></div><button id="refresh-btn-akun" class="btn btn-light flex-shrink-0" title="Refresh Data"><i class="bi bi-arrow-clockwise"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th scope="col" class="ps-3">Status</th><th scope="col">Email</th><th scope="col">Waktu Disalin</th><th scope="col" class="text-center pe-3">Aksi</th></tr></thead><tbody id="akun-table-body"></tbody></table></div></div></div>
+            </div>
+
+            <div id="view-game" class="view-container d-none">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <h5 class="card-title mb-0"><i class="bi bi-list-check text-primary"></i> Daftar Game</h5>
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn btn-primary fw-bold d-none" id="copy-selected-btn-game">
+                                <i class="bi bi-clipboard-check-fill"></i> Salin Pilihan <span class="badge bg-white text-primary ms-1" id="selected-count-game">0</span>
+                            </button>
+                            <div class="input-group" style="width: 250px;"><span class="input-group-text"><i class="bi bi-search"></i></span><input type="text" id="searchInput-game" class="form-control" placeholder="Cari nama game..."></div>
+                            <button id="refresh-btn-game" class="btn btn-light flex-shrink-0" title="Refresh Data"><i class="bi bi-arrow-clockwise"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0"><div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th scope="col" class="text-center ps-3" style="width: 1%;"><input class="form-check-input" type="checkbox" id="select-all-checkbox-game"></th><th scope="col">Game</th><th scope="col">Link</th><th scope="col" class="text-center">Jumlah Salin</th></tr></thead><tbody id="game-table-body"></tbody></table></div></div>
+                </div>
+            </div>
+            
+            <div id="view-film" class="view-container d-none">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <h5 class="card-title mb-0"><i class="bi bi-film text-primary"></i> Daftar Film</h5>
+                        <div class="d-flex align-items-center gap-2">
+                             <button class="btn btn-primary fw-bold d-none" id="copy-selected-btn-film">
+                                <i class="bi bi-clipboard-check-fill"></i> Salin Pilihan <span class="badge bg-white text-primary ms-1" id="selected-count-film">0</span>
+                            </button>
+                            <div class="input-group" style="width: 250px;"><span class="input-group-text"><i class="bi bi-search"></i></span><input type="text" id="searchInput-film" class="form-control" placeholder="Cari nama film..."></div>
+                            <button id="refresh-btn-film" class="btn btn-light flex-shrink-0" title="Refresh Data"><i class="bi bi-arrow-clockwise"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0"><div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th scope="col" class="text-center ps-3" style="width: 1%;"><input class="form-check-input" type="checkbox" id="select-all-checkbox-film"></th><th scope="col">Film</th><th scope="col">Link</th><th scope="col" class="text-center">Jumlah Salin</th></tr></thead><tbody id="film-table-body"></tbody></table></div></div>
+                </div>
+            </div>
+
+            <div id="loadingIndicator" class="loading-indicator"><div class="spinner-border text-primary"></div></div>
+            <div id="noResults" class="no-results-indicator"></div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="theme.js"></script>
+    <script src="penjualan.js"></script>
+</body>
+</html>

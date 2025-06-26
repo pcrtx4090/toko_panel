@@ -1,0 +1,108 @@
+/* =================================================================
+   GAYA BARU BERDASARKAN INSPIRASI DESAIN - VERSI FINAL
+   ================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* === DEFINISI VARIABEL WARNA & TEMA === */
+:root {
+    /* Tema Terang (Light Mode) */
+    --bg-main: #f0f2f5;
+    --bg-content: #ffffff;
+    --bg-sidebar: rgba(255, 255, 255, 0.8);
+    --text-primary: #050505;
+    --text-secondary: #65676b;
+    --border-color: #ced0d4;
+    --accent-color: #0c66e4;
+    --accent-color-hover: #0055cc;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-family: 'Inter', sans-serif;
+}
+
+[data-bs-theme="dark"] {
+    /* Tema Gelap (Dark Mode) - Sesuai Inspirasi */
+    --bg-main: #0d1117;
+    --bg-content: #161b22;
+    --bg-sidebar: rgba(22, 27, 34, 0.8); /* Warna dasar sidebar dengan transparansi */
+    --text-primary: #e6edf3;
+    --text-secondary: #7d8590;
+    --border-color: #30363d;
+    --accent-color: #388bfd;
+    --accent-color-hover: #58a6ff;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* === SIDEBAR & LAYOUT UTAMA === */
+.sidebar {
+    position: fixed; top: 0; left: 0; width: var(--sidebar-width, 260px); height: 100vh;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    backdrop-filter: blur(10px); /* Efek Frosted Glass */
+    -webkit-backdrop-filter: blur(10px);
+    display: flex; flex-direction: column; transition: transform 0.3s ease-in-out; z-index: 1030;
+}
+.sidebar-header {
+    height: var(--header-height, 70px); display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.5rem; border-bottom: 1px solid var(--border-color); flex-shrink: 0;
+}
+.app-logo { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+.app-logo i { color: var(--accent-color); }
+.sidebar-menu { list-style: none; padding: 1rem 0.75rem; margin: 0; flex-grow: 1; overflow-y: auto; }
+.menu-link, .menu-link-alt {
+    display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 1rem; color: var(--text-secondary);
+    text-decoration: none; font-weight: 600; border-radius: 8px; transition: all 0.2s ease; margin: 0.25rem 0;
+}
+.menu-link i, .menu-link-alt i { font-size: 1.2rem; }
+.menu-link:hover { background-color: var(--bg-main); color: var(--accent-color); }
+.menu-link.active { background-color: var(--accent-color); color: #fff; }
+.sidebar-divider { height: 1px; background-color: var(--border-color); margin: 1rem 1.5rem; }
+.sidebar-footer { padding: 1.5rem; border-top: 1px solid var(--border-color); flex-shrink: 0; }
+.theme-switch-wrapper { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; color: var(--text-secondary); padding: 0 1rem; }
+
+.main-content { margin-left: var(--sidebar-width, 260px); transition: margin-left 0.3s ease; }
+.main-header {
+    height: var(--header-height, 70px); background-color: var(--bg-sidebar); border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    display: flex; align-items: center; padding: 0 1.5rem; position: sticky; top: 0; z-index: 999;
+}
+.page-title { margin: 0; font-size: 1.5rem; font-weight: 800; }
+
+/* === KOMPONEN KUSTOM === */
+.card {
+    background-color: var(--bg-content); border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px var(--shadow-color); border-radius: 16px;
+}
+.card-header { border-bottom: 1px solid var(--border-color); }
+.btn-primary { 
+    background-color: var(--accent-color); border-color: var(--accent-color); font-weight: 600;
+    box-shadow: 0 4px 15px -5px var(--accent-color); transition: all 0.3s ease;
+}
+.btn-primary:hover { background-color: var(--accent-color-hover); border-color: var(--accent-color-hover); transform: translateY(-2px); }
+.form-control, .form-select {
+    background-color: var(--bg-main); color: var(--text-primary); border: 2px solid var(--border-color);
+    border-radius: 8px; transition: border-color 0.2s;
+}
+.form-control:focus, .form-select:focus { background-color: var(--bg-main); color: var(--text-primary); border-color: var(--accent-color); box-shadow: none; }
+.input-group-text { background-color: var(--bg-content); border: 2px solid var(--border-color); border-right: 0; }
+.input-group .form-control { border-left: 0; }
+
+.table > :not(caption) > * > * { border-bottom-width: 1px; border-color: var(--border-color); }
+.table-hover > tbody > tr:hover > * { background-color: var(--bg-main); color: var(--text-primary); }
+
+/* ... (Sisa gaya dari jawaban sebelumnya seperti overlay, responsive, dll tetap bisa digunakan) ... */
+.sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 1020; }
+body.sidebar-open .sidebar-overlay { opacity: 1; visibility: visible; }
+@media (max-width: 991.98px) {
+    .sidebar { transform: translateX(-100%); }
+    body.sidebar-open .sidebar { transform: translateX(0); }
+    .main-content { margin-left: 0; }
+}
+
+/* Penyesuaian akhir agar sesuai Bootstrap Dark Mode */
+[data-bs-theme="dark"] .btn-light { --bs-btn-bg: #30363d; --bs-btn-border-color: #30363d; --bs-btn-color: #e6edf3; --bs-btn-hover-bg: #484f58; --bs-btn-hover-border-color: #484f58; }
